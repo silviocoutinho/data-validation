@@ -6,6 +6,7 @@ const {
   numberOrError,
   positiveOrError,
   validLengthOrError,
+  strengthPassword,
 } = require('./app');
 const ValidationError = require('./errors/ValidationError');
 
@@ -62,5 +63,45 @@ describe('Checking types', () => {
     expect(t).toThrow(
       'O limite máximo de caracteres é de 10 para o campo name',
     );
+  });
+});
+
+describe('Password Checkup', () => {
+  test('Should throw error when password have less than 10 chars', () => {
+    const t = () => strengthPassword('Myp@ss#31');
+    expect(t).toThrow(ValidationError);
+    expect(t).toThrow('A senha deve conter no mínimo 10 caracteres');
+  });
+
+  test('Should throw error when password have 3 or more chars repeated', () => {
+    const t = () => strengthPassword('Myp@ss#333');
+    expect(t).toThrow(ValidationError);
+    expect(t).toThrow(
+      'A senha não pode conter uma sequência de 3 ou mais caracteres repetidos',
+    );
+  });
+
+  test('Should throw error when password dont have lowercase letter', () => {
+    const t = () => strengthPassword('MYP@SS#433');
+    expect(t).toThrow(ValidationError);
+    expect(t).toThrow('A senha deve conter um caracter minúsculo');
+  });
+
+  test('Should throw error when password dont have lowercase letter', () => {
+    const t = () => strengthPassword('myp@ss#433');
+    expect(t).toThrow(ValidationError);
+    expect(t).toThrow('A senha deve conter um caracter maiusculo');
+  });
+
+  test('Should throw error when password dont have one number', () => {
+    const t = () => strengthPassword('myp@ss#Hgg');
+    expect(t).toThrow(ValidationError);
+    expect(t).toThrow('A senha deve conter pelo menos um número');
+  });
+
+  test('Should throw error when password dont have one number', () => {
+    const t = () => strengthPassword('mypadss3H4g');
+    expect(t).toThrow(ValidationError);
+    expect(t).toThrow('A senha deve conter pelo menos um caracter especial');
   });
 });
