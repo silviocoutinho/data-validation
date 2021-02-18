@@ -4,7 +4,7 @@
   "description": "Checking values for variables, checking for number, string, etc. ",
   "main": "app.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watch --verbose=true --runInBand --detectOpenHandles"
   },
   "repository": {
     "type": "git",
