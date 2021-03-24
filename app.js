@@ -40,7 +40,7 @@ function positiveOrError(value, msg) {
 }
 
 function dateOrError(value, msg) {
-  if (!!value.parse === false) throw new ValidationError(msg);
+  if (!!Date.parse(value) === false) throw new ValidationError(msg);
 }
 
 function validLengthOrError(value, max, min, field) {
