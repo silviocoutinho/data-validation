@@ -33,6 +33,12 @@ describe('Checking types', () => {
     expect(t).toThrow('Not equal');
   });
 
+  test('Should throw error when value is not equal with code 404', () => {
+    const t = () => equalsOrError(valueNullString, valueString, 'Not equal', 404);    
+    expect(t).toThrow(ValidationError);
+    expect(t).toThrow('Not equal');     
+  });
+
   test('Should throw error when email is invalid', () => {
     const t = () => validEmailOrError('johns#gmail.com', 'Invalid email');
     expect(t).toThrow(ValidationError);

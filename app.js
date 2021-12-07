@@ -22,8 +22,8 @@ function notExistsOrError(value, msg) {
   throw new ValidationError(msg);
 }
 
-function equalsOrError(valueA, valueB, msg) {
-  if (valueA !== valueB) throw new ValidationError(msg);
+function equalsOrError(valueA, valueB, msg, code = 400) {
+  if (valueA !== valueB) throw new ValidationError(msg, code);
 }
 
 function validEmailOrError(value, msg) {
