@@ -5,6 +5,7 @@ const {
   validEmailOrError,
   numberOrError,
   positiveOrError,
+  dateOrError,
   validLengthOrError,
   strengthPassword,
 } = require('./app');
@@ -55,6 +56,12 @@ describe('Checking types', () => {
     const t = () => positiveOrError(-5, 'Is not a positive number');
     expect(t).toThrow(ValidationError);
     expect(t).toThrow('Is not a positive number');
+  });
+
+  test('Should throw error when value is not a Date', () => {
+    const t = () => dateOrError('25/25/25', 'Is not a valid date');
+    expect(t).toThrow(ValidationError);
+    expect(t).toThrow('Is not a valid date');
   });
 
   test('Should throw error when value dont have min valid length', () => {

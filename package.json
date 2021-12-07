@@ -1,6 +1,6 @@
 {
   "name": "data-validation-cmjau",
-  "version": "1.0.1",
+  "version": "1.1.2",
   "description": "Checking values for variables, checking for number, string, etc. ",
   "main": "app.js",
   "scripts": {

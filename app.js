@@ -39,6 +39,10 @@ function positiveOrError(value, msg) {
   if (Math.sign(value) === -1) throw new ValidationError(msg);
 }
 
+function dateOrError(value, msg) {
+  if (!!Date.parse(value) === false) throw new ValidationError(msg);
+}
+
 function validLengthOrError(value, max, min, field) {
   //console.log('TAMANHO', value.length)
   if (value.length > max)
@@ -117,6 +121,7 @@ module.exports = {
   validEmailOrError,
   numberOrError,
   positiveOrError,
+  dateOrError,
   validLengthOrError,
   validTypeOfOrError,
   strengthPassword,
